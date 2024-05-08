@@ -1,4 +1,5 @@
 #include<iostream>
+#include<cmath>
 
 using namespace std;
 
@@ -8,8 +9,12 @@ int main() {
 	cin >> n;
 
 	int i = 2;
+	int rn = sqrt(n);
 
-	while (i <= n - 1) {
+	// int x = 3.14; // implicit type-casting
+	// cout << x ; // 3
+
+	while (i <= rn) {
 
 		if (n % i == 0) {
 
@@ -24,7 +29,7 @@ int main() {
 
 	}
 
-	if (i == n) {
+	if (i > rn) {
 		cout << "prime" << endl;
 	}
 

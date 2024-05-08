@@ -1,5 +1,4 @@
 #include<iostream>
-#include<climits>
 
 using namespace std;
 
@@ -8,15 +7,15 @@ int main() {
 	int count = 0; // to track the count of non-negative nos.
 	int data;
 
-	while(true) {
+	while (true) {
 		cin >> data;
-		if(data < 0) {
+		if (data < 0) {
 			break;
 		}
 		count++;
 	}
 
 	cout << "count = " << count << endl;
-	
+
 	return 0;
 }

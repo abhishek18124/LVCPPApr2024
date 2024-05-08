@@ -6,12 +6,34 @@ using namespace std;
 int main() {
 
 	int n;
-	cout << "Enter the value of n : ";
 	cin >> n;
 
 	int lsf = INT_MIN; // to track the "largest so far"
+	int ssf = INT_MAX; // to track the "smallest so far"
 
-	// todo ...
-	
+	int i = 1;
+
+	while (i <= n) {
+
+		int x;
+		cin >> x;
+
+		if (x > lsf) {
+
+			lsf = x;
+
+		}
+
+		if (x < ssf) {
+
+			ssf = x;
+
+		}
+
+		i = i + 1;
+	}
+
+	cout << lsf << " " << ssf << endl;
+
 	return 0;
 }
