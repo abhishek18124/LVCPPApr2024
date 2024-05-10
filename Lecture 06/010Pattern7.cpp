@@ -4,9 +4,58 @@ using namespace std;
 
 int main() {
 
-	int n = 5;
+	int n;
+	cin >> n;
 
-	// todo ...
+	// iterate over the rows
+
+	int i = 1;
+
+	while (i <= n) {
+
+		// for the ith row, print n-i spaces
+
+		int j = 1;
+
+		while (j <= n - i) {
+
+			cout << ' ';
+			j++;
+
+		}
+
+		// followed by i nos. in the inc. order starting with i
+
+		j = 1;
+		int num = i;
+
+		while (j <= i) {
+
+			cout << num;
+			num++;
+			j++;
+
+		}
+
+		// followd by i-1 nos. in the dec. order starting with 2*i - 2
+
+		j = 1;
+		//num = 2 * i - 2;
+		num = num - 2;
+
+		while (j <= i - 1) {
+
+			cout << num;
+			num--;
+			j++;
+
+		}
+
+		cout << endl;
+
+		i++;
+
+	}
 
 	return 0;
 }

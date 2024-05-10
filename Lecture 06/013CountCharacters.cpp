@@ -4,18 +4,23 @@ using namespace std;
 
 int main() {
 
-	int count = 0; // to track the no. of characters
+	int cnt = 0; // to track the no. of characters
 	char ch;
 
-	while(true) {
-		cin >> ch;
-		if(ch == '$') {
+	while (true) {
+
+		// cin >> ch; // it will ignore whitespaces
+		ch = cin.get(); // it will not ignore whitespaces
+
+		if (ch == '$') {
 			break;
 		}
-		count++;
+
+		cnt++;
+
 	}
 
-	cout << "count : " << count << endl;
+	cout << "cnt = " << cnt << endl;
 
 	return 0;
 }
