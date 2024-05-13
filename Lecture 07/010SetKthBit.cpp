@@ -7,7 +7,9 @@ int main() {
 	int n = 42;
 	int k = 4;
 
-	// todo ...
+	int mask = 1 << k;
+
+	cout << n << "|" << mask << " = " << (n | mask) << endl;
 
 	return 0;
 }

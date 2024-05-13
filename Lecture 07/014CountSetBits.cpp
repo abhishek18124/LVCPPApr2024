@@ -5,10 +5,20 @@ using namespace std;
 
 int main() {
 
-	int n = 42;
+	int n = 3;
 	int cnt = 0; // to track the no. of set bits in 'n'
 
-	// todo ...
+	for (int k = 0; k <= 31; k++) {
+
+		// check if the kth bit of n is set ?
+
+		if ((n >> k) & 1) {
+			cnt++;
+		}
+
+	}
+
+	cout << cnt << endl;
 
 	return 0;
 }

@@ -4,9 +4,24 @@ using namespace std;
 
 int main() {
 
-	int n = 10;
+	int n;
+	cin >> n;
 
-	// todo ...
+	int rightMostBit = n & 1;
+	cout << rightMostBit << endl;
+
+	if ((n & 1) == 1) {
+		cout << n << " is odd" << endl;
+	} else {
+		cout << n << " is even" << endl;
+	}
+
+
+	if (n & 1) {
+		cout << n << " is odd" << endl;
+	} else {
+		cout << n << " is even" << endl;
+	}
 
 	return 0;
 }
