@@ -13,11 +13,11 @@ int main() {
 
 	// template argument deduction
 
-	// std::cout << max<>(2, 3) << std::endl;
-	// std::cout << max<>(1.732, 1.414) << std::endl;
+	std::cout << max<>(2, 3) << std::endl;
+	std::cout << max<>(1.732, 1.414) << std::endl;
 
-	// std::cout << max(2, 3) << std::endl;
-	// std::cout << max(1.732, 1.414) << std::endl;
+	std::cout << max(2, 3) << std::endl;
+	std::cout << max(1.732, 1.414) << std::endl;
 
 	return 0;
 }
