@@ -2,12 +2,12 @@
 
 using namespace std;
 
-int lowerBound(int arr[], int n, int t) {
+int upperBound(int arr[], int n, int t) {
 
 	int s = 0; // lower bound of the search space
 	int e = n - 1; // upper bound of the search space
 
-	int ans = -1; // to store the idx of the 1st occurrence of the t in arr[]
+	int ans = -1; // to store the idx of the last occurrence of the t in arr[]
 
 	while (s <= e) {
 
@@ -18,8 +18,8 @@ int lowerBound(int arr[], int n, int t) {
 			// t found at index m
 			ans = m;
 
-			// move towards the left of the midPoint because there may be more occurrences of t in arr[]
-			e = m - 1;
+			// move towards the right of the midPoint because there may be more occurrences of t in arr[]
+			s = m + 1;
 
 		} else if (t > arr[m]) {
 
@@ -46,12 +46,12 @@ int lowerBound(int arr[], int n, int t) {
 
 int main() {
 
-	int arr[] = {10, 20, 30, 30, 30, 30, 30, 40, 50};
+	int arr[] = {10, 20, 30, 30, 30, 30, 30, 40, 50, 50};
 	int n = sizeof(arr) / sizeof(int);
 
 	int t = 100;
 
-	cout << lowerBound(arr, n, t) << endl;
+	cout << upperBound(arr, n, t) << endl;
 
 	return 0;
 }
