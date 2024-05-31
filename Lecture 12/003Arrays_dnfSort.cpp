@@ -2,7 +2,7 @@
 
 using namespace std;
 
-int main() {	
+int main() {
 
 	int arr[] = {1, 0, 1, 2, 0, 1, 2, 0, 1};
 	int n = sizeof(arr) / sizeof(int);
@@ -10,7 +10,7 @@ int main() {
 	int low  = -1; // denotes the end   of the 0s region
 	int mid  = 0;  // denotes the start of the unknown region
 	int high = n;  // denotes the start of the 2s region
-	
+
 	/*
 
 		arr[0.....low]  contains 0s
@@ -20,13 +20,32 @@ int main() {
 
 	*/
 
-	// todo ...
+	// time : O(n)
+	// space: O(1)
 
-	for(int i=0; i<n; i++) {
+	while (mid < high) {
+
+		if (arr[mid] == 0) {
+			// put arr[mid] in zeros
+			low++;
+			swap(arr[low], arr[mid]);
+			mid++;
+		} else if (arr[mid] == 1) {
+			// put arr[mid] in ones
+			mid++;
+		} else {
+			// put arr[mid] in twos
+			high--;
+			swap(arr[mid], arr[high]);
+		}
+
+	}
+
+	for (int i = 0; i < n; i++) {
 		cout << arr[i] << " ";
 	}
 
 	cout << endl;
-	
+
 	return 0;
 }
