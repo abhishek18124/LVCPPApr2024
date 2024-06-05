@@ -13,5 +13,14 @@ int main() {
 
 	cout << "xptr = " << xptr << endl;
 
+	int y = 20;
+	int* yptr = &y;
+
+	cout << "yptr = " << yptr << endl;
+
+	yptr = yptr + 2;
+
+	cout << "yptr = " << yptr << endl;
+
 	return 0;
 }
