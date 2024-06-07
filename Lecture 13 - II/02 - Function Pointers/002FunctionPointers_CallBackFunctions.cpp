@@ -31,7 +31,21 @@ int main() {
 	int arr[] = {1, 0, 3, 2, 4};
 	int n = sizeof(arr) / sizeof(int);
 
-	// todo ...
+	bubbleSort(arr, n, ascending);
+
+	for (int i = 0; i < n; i++) {
+		cout << arr[i] << " ";
+	}
+
+	cout << endl;
+
+	bubbleSort(arr, n, desceding);
+
+	for (int i = 0; i < n; i++) {
+		cout << arr[i] << " ";
+	}
+
+	cout << endl;
 
 	return 0;
 }

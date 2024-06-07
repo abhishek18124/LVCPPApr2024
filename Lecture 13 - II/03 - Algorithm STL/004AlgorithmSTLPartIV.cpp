@@ -12,12 +12,24 @@ int main() {
 
 	// 1. searching for a key in a sequence using find()
 
+	auto it = find(arr, arr + n, key);
 
+	if (it == arr + n) {
+
+		cout << key << " not found" << endl;
+
+	} else {
+
+		cout << key << " found at address " << it << endl;
+		cout << key << " found at index " << (it - arr) << endl;
+
+	}
 
 	// 2. counting the occurrences of a key in a sequence using count()
 
+	key = 10;
 
-
+	cout << count(arr, arr + n, key) << endl;
 
 	return 0;
 }

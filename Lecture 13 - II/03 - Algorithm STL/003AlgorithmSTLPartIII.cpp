@@ -10,11 +10,11 @@ int main() {
 
 	// 1. finding the minimum value in a sequence
 
-
+	cout << *min_element(arr, arr + n) << endl;
 
 	// 2. finding the maximum value in a sequence
 
-
+	cout << *max_element(arr, arr + n) << endl;
 
 	return 0;
 }

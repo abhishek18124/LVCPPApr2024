@@ -14,19 +14,25 @@ int main() {
 
 	// 1. searching for a key in a sorted sequence in O(logn) using binary_search()
 
-
+	binary_search(arr, arr + n, key) ? cout << key << " found" << endl : cout << key << " not found" << endl;
 
 	// 2. finding lower bound for a key in a sorted sequence in O(logn) using lower_bound()
 
+	key = 40;
 
+	auto lb = lower_bound(arr, arr + n, key); // you'll get the address of the 1st element >= key
+
+	cout << lb - arr << endl;
 
 	// 3. finding upper bound for a key in a sorted sequence in O(logn) using upper_bound()
 
+	auto ub = upper_bound(arr, arr + n, key); // you'll get the address of the 1st element > key
 
+	cout << ub - arr << endl;
 
 	// 4. counting the occurences of a key in a sorted sequence in O(logn)
 
-
+	cout << ub - lb << endl;
 
 	return 0;
 }
