@@ -3,16 +3,41 @@
 
 using namespace std;
 
+// length of s1 = m
+// length of s2 = n
+
+// steps = n ~ O(n)
+
+void copyString(char s1[], char s2[]) {
+
+	int i = 0; // to iterate over s1[]
+	int j = 0; // to iterate over s2[]
+
+	while (s2[j] != '\0') {
+
+		s1[i] = s2[j];
+
+		i++;
+		j++;
+
+	}
+
+	s1[i] = '\0';
+
+
+}
+
 int main() {
 
-	char str1[100] = "hello";
-	char str2[] = "wow";
+	char s1[100] = "abcde";
+	char s2[] = "xyz";
 
-	cout << "Before copy : " << str1 << endl;
+	cout << "Before copy : " << s1 << endl;
 
-	// todo ...
-	
-	cout << "After copy : " << str1 << endl;
+	// copyString(s1, s2);
+	strcpy(s1, s2);
+
+	cout << "After copy : " << s1 << endl;
 
 	return 0;
 }

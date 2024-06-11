@@ -5,16 +5,42 @@
 
 using namespace std;
 
+// length of s1 is m
+// length of s2 is n
+
+// steps = n ~ O(n)
+
+void concatString(char s1[], char s2[]) {
+
+	int i = strlen(s1); // to iterate over s1[]
+	int j = 0; // to iterate over s2[]
+
+	while (s2[j] != '\0') {
+
+		s1[i] = s2[j];
+
+		i++;
+		j++;
+
+	}
+
+	s1[i] = '\0';
+
+
+}
+
+
 int main() {
 
-	char str1[101] = "hello";
-	char str2[] = "world";
+	char s1[101] = "abc";
+	char s2[] = "def";
 
-	cout << "Before concat : " << str1 << endl;
+	cout << "Before concat : " << s1 << endl;
 
-	// todo ...
+	// concatString(s1, s2);
+	strcat(s1, s2);
 
-	cout << "After concat : " << str1 << endl;
+	cout << "After concat : " << s1 << endl;
 
 	return 0;
 }
