@@ -2,7 +2,7 @@
 
 	Constraints :
 
-	0 < m, n <= 10
+	0 < n <= 10
 
 */
 
@@ -10,13 +10,31 @@
 
 using namespace std;
 
+// total swaps = (n^2 - n) / 2
+// time : (n^2 - n) / 2 .const ~ O(n^2)
+
+void transpose(int mat[][10], int n) {
+
+	for (int i = 0; i <= n - 2; i++) {
+
+		for (int j = i + 1; j <= n - 1; j++) {
+
+			swap(mat[i][j], mat[j][i]);
+
+		}
+
+	}
+
+}
+
 int main() {
 
-	int m, n;
-	cin >> m >> n;
+	int n;
+	cin >> n;
 
 	int mat[10][10];
-	for (int i = 0; i < m; i++) {
+
+	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < n; j++) {
 			cin >> mat[i][j];
 		}
@@ -24,7 +42,7 @@ int main() {
 
 	cout << "matrix before transpose = " << endl;
 
-	for (int i = 0; i < m; i++) {
+	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < n; j++) {
 			cout << mat[i][j] << " ";
 		}
@@ -33,10 +51,11 @@ int main() {
 
 	cout << endl << endl;
 
-	// todo ...
+	transpose(mat, n);
 
 	cout << "matrix after transpose = " << endl;
-	for (int i = 0; i < m; i++) {
+
+	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < n; j++) {
 			cout << mat[i][j] << " ";
 		}

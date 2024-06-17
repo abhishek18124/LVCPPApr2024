@@ -1,6 +1,31 @@
 #include<iostream>
+#include<algorithm>
 
 using namespace std;
+
+// time : O(mlogn)
+
+bool isPresent(int mat[][3], int m, int n, int t) {
+
+	for (int i = 0; i < m; i++) {
+
+		// apply binary search in the ith row to search for the 't'
+
+		if (binary_search(mat[i], mat[i + 1], t)) {
+
+			// you've found the 't' in the ith row
+
+			return true;
+
+		}
+
+	}
+
+	// 't' is not found
+
+	return false;
+
+}
 
 int main() {
 
@@ -13,9 +38,9 @@ int main() {
 	int m = 3;
 	int n = 3;
 
-	int t = 50;
+	int t = 60;
 
-	// todo ...
+	isPresent(mat, m, n, t) ? cout << t << " found" << endl : cout << t << " not found" << endl;
 
 	return 0;
 }
