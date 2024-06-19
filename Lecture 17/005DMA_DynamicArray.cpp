@@ -2,11 +2,16 @@
 
 using namespace std;
 
-resize(int* A, int c) {
+int* resize(int* A, int c) {
 	cout << "resizing from "
 	     << c*sizeof(int) << "B to "
 	     << 2 * c*sizeof(int) << "B" << endl;
-	// todo ...
+	int* B = new int[2 * c];
+	for (int i = 0; i < c; i++) {
+		B[i] = A[i];
+	}
+	delete [] A;
+	return B;
 }
 
 int main() {
@@ -21,7 +26,20 @@ int main() {
 
 		cin >> x;
 
-		// todo ...
+		if (x < 0) {
+			break;
+		}
+
+		if (i == c) {
+
+			// resize the vector
+			A = resize(A, c);
+			c = 2 * c;
+
+		}
+
+		A[i] = x;
+		i++;
 
 	}
 

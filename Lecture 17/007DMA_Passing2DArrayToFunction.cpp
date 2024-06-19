@@ -3,17 +3,17 @@
 using namespace std;
 
 void read(int** ptr, int m, int n) {
-	for(int i=0; i<m; i++) {
-		for(int j=0; j<n; j++) {
+	for (int i = 0; i < m; i++) {
+		for (int j = 0; j < n; j++) {
 			cin >> ptr[i][j];
 		}
 	}
 }
 
 void print(int** ptr, int m, int n) {
-	for(int i=0; i<m; i++) {
-		for(int j=0; j<n; j++) {
-			cout << ptr[i][j];
+	for (int i = 0; i < m; i++) {
+		for (int j = 0; j < n; j++) {
+			cout << ptr[i][j] << " ";
 		}
 		cout << endl;
 	}
@@ -27,7 +27,7 @@ int main() {
 
 	int** ptr = new int*[m];
 
-	for(int i=0; i<m; i++) {
+	for (int i = 0; i < m; i++) {
 		ptr[i] = new int[n];
 	}
 
@@ -35,7 +35,7 @@ int main() {
 
 	print(ptr, m, n);
 
-	for(int i=0; i<m; i++) {
+	for (int i = 0; i < m; i++) {
 		delete [] ptr[i];
 	}
 
