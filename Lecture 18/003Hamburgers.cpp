@@ -1,6 +1,6 @@
 /*
 
-    @author : abhishek srivastava https://twitter.com/srivabhishekml
+    @author : abhishek srivastava
     Hamburgers : https://codeforces.com/contest/371/problem/C
 
     constraints :
@@ -46,7 +46,7 @@ int p_b, p_s, p_c; // to store the price of 'B', 'S' and 'C'
 int c_b, c_s, c_c;  // to store the frequencies of 'B', 'S' and 'C' hamburger's recipe
 ll r;             // to store the money Polycarpus has
 
-bool canPolycarpusCook(ll m) {
+bool canPolycarpusCook(ll m) { // const
 
     // check if Polycarpus can cook 'm' hamburgers ?
 
@@ -76,12 +76,16 @@ int main() {
         else if (c == 'C') c_c++;
     }
 
+    // time : log(hi-lo).c ~ O(log(hi-lo))
+
     ll lo = 0; // min. no. of hamburgers Polycarpus can make
-    ll hi = 1000000000100; // max. no. of hamburgers Polycarpus can make
+    ll hi = 1e12 + 100; // 1000000000100; // max. no. of hamburgers Polycarpus can make
+
+    // 1e2 = 1*10^12
 
     ll ans = 0; // to track max. no. of hamburgers Polycarpus can make
 
-    while (lo <= hi) {
+    while (lo <= hi) { // log(hi-lo)
         ll m = lo + (hi - lo) / 2;
         if (canPolycarpusCook(m)) {
             // Polycarpus can cook 'm' hamburgers therefore move right
