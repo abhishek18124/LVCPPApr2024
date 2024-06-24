@@ -31,14 +31,14 @@ public :
 	double credits;
 	creditCard card;
 
-	customer(string n, int a, char g, double c, string cn, string bn) {
+	customer(string n, int a, char g, double c, string cn, string bn) : card(cn, bn) {
 		cout << "\ninside parameterised constructor of \'customer\' class\n";
 		name = n;
 		age = a;
 		gender = g;
 		credits = c;
-		card.cardNumber = cn;
-		card.bankName = bn;
+		// card.cardNumber = cn;
+		// card.bankName = bn;
 	}
 
 	void print() {

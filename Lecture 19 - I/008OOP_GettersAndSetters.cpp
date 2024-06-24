@@ -63,10 +63,20 @@ int main() {
 
 	customer c;
 
-	c.name = "Ramanujan";
-	c.age = 32;
-	c.gender = 'M';
-	c.credits = 1729;
+	// c.name = "Ramanujan";
+	// c.age = 32;
+	// c.gender = 'M';
+	// c.credits = 1729;
+
+	c.setName("Ramanujan");
+	c.setAge(32);
+	c.setGender('M');
+	c.setCredits(1729);
+
+	cout << "name = " << c.getName() << endl;
+	cout << "age = " << c.getAge() << endl;
+	cout << "gender = " << c.getGender() << endl;
+	cout << "credits = " << c.getCredits() << endl << endl;
 
 	c.print();
 

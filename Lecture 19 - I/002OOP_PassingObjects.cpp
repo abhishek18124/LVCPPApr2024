@@ -13,6 +13,16 @@ public :
 
 };
 
+void printCustomerInfo(customer c) {
+
+	cout << "\ncustomer information\n";
+	cout << "name = " << c.name << endl;
+	cout << "age = " << c.age << endl;
+	cout << "gender = " << c.gender << endl;
+	cout << "credits = " << c.credits << endl << endl;
+
+}
+
 int main() {
 
 	customer c1;
@@ -22,7 +32,7 @@ int main() {
 	c1.gender = 'M';
 	c1.credits = 1729;
 
-	// todo ...
+	printCustomerInfo(c1);
 
 	customer c2;
 
@@ -31,7 +41,7 @@ int main() {
 	c2.gender = 'M';
 	c2.credits = 0;
 
-	// todo ...
+	printCustomerInfo(c2);
 
 	return 0;
 }

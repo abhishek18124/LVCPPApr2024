@@ -11,6 +11,10 @@ public :
 	char gender;
 	double credits;
 
+	customer() {
+		cout << "\ninside the default constructor of the \'customer\' class\n" << endl;
+	}
+
 	customer(string n, int a, char g, double c) {
 		cout << "\ninside the parameterised constructor of the \'customer\' class\n" << endl;
 		name = n;
@@ -28,6 +32,14 @@ public :
 
 	}
 
+	void operator=(const customer& c) {
+		cout << "\ninside the copy assignment operator fn of the \'customer\' class\n" << endl;
+		name = c.name;
+		age = c.age;
+		gender = c.gender;
+		credits = c.credits;
+	}
+
 	void print() {
 		cout << "name = " << name << endl;
 		cout << "age =  " << age << endl;
@@ -41,6 +53,12 @@ int main() {
 
 	customer c1("Ramanujan", 32, 'M', 1729);
 	c1.print();
+
+	customer c2; // default constructor
+	c2 = c1; // copy assignment operator is used to make c2 a copy of c1
+	// c2.operator = (c1);
+
+	c2.print();
 
 	return 0;
 }

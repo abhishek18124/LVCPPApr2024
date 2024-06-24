@@ -15,17 +15,17 @@ public :
 		cout << "\ninside the default constructor of the \'customer\' class\n" << endl;
 	}
 
-	customer(string name, int age, char gender, double credits) {
+	customer(string n, int a, char g, double c) {
 		cout << "\ninside the parameterised constructor of the \'customer\' class\n" << endl;
-		name = name;
-		age = age;
-		gender = gender;
-		credits = credits;
+		name = n;
+		age = a;
+		gender = g;
+		credits = c;
 	}
 
 	void print() {
 		cout << "name = " << name << endl;
-		cout << "age = " << age << endl;
+		cout << "age =  " << age << endl;
 		cout << "gender = " << gender << endl;
 		cout << "credits = " << credits << endl << endl;
 	}
@@ -34,8 +34,22 @@ public :
 
 int main() {
 
-	customer c("Ramanujan", 32, 'M', 1729);
-	c.print();
+	customer c1("Ramanujan", 32, 'M', 1729);
+
+	customer c2 = c1;
+	c2.print();
+
+	c2.name = "Aryabhata";
+	c2.print();
+
+	customer c3;
+	c3 = c1;
+	c3.print();
+
+	c3.age = 74;
+	c3.print();
+
+	c1.print();
 
 	return 0;
 }

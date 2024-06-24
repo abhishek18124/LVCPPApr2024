@@ -11,15 +11,8 @@ public :
 	char gender;
 	double credits;
 
-	customer(string n, int a, char g, double c) {
-		cout << "\ninside the parameterised constructor of the \'customer\' class\n" << endl;
-		name = n;
-		age = a;
-		gender = g;
-		credits = c;
-	}
-
-	void print() {
+	void printCustomerInfo() {
+		cout << "\ncustomer information\n";
 		cout << "name = " << name << endl;
 		cout << "age = " << age << endl;
 		cout << "gender = " << gender << endl;
@@ -30,9 +23,23 @@ public :
 
 int main() {
 
-	customer c1("Ramanujan", 32, 'M', 1729);
-	customer c2("Aryabhata", 74, 'M', 0);
+	customer c1;
+
+	c1.name = "Ramanujan";
+	c1.age = 32;
+	c1.gender = 'M';
+	c1.credits = 1729;
+
+	c1.printCustomerInfo();
+
+	customer c2;
+
+	c2.name = "Aryabhata";
+	c2.age = 74;
+	c2.gender = 'M';
+	c2.credits = 0;
+
+	c2.printCustomerInfo();
 
 	return 0;
-
 }

@@ -12,11 +12,12 @@ public :
 	double credits;
 
 	customer() {
-		cout << "\ninside the default constructor of the \'customer\' class\n" << endl;
+		cout << "\nI am inside the default constructor of the customer class\n";
 	}
 
+
 	customer(string n, int a, char g, double c) {
-		cout << "\ninside the parameterised constructor of the \'customer\' class\n" << endl;
+		cout << "\nI am inside the parameterised constructor of the customer class\n";
 		name = n;
 		age = a;
 		gender = g;
@@ -27,13 +28,18 @@ public :
 		cout << "name = " << name << endl;
 		cout << "age = " << age << endl;
 		cout << "gender = " << gender << endl;
-		cout << "credits = " << credits << endl << endl;
+		cout << "credits = " << credits << endl;
 	}
-
 };
+
+
 
 int main() {
 
+	customer c("Ramanujan", 32, 'M', 1729);
+	c.print();
+
+	customer d;
 
 	return 0;
 }
