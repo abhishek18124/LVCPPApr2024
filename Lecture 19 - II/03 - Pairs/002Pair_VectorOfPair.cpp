@@ -1,8 +1,22 @@
 #include<iostream>
 #include<vector>
 #include<utility>
+#include<algorithm>
 
 using namespace std;
+
+bool comparator(pair<int, char> a, pair < int, char> b) {
+
+	if (a.second < b.second) {
+
+		// we want a to be ordered before b since we are sorting in inc. order based on 2nd element of pair<>
+		return true;
+
+	}
+
+	return false;
+
+}
 
 int main() {
 
@@ -48,7 +62,7 @@ int main() {
 
 	// sorting a vector of pair in the increasing order based on second element of the pair
 
-	// todo ...
+	sort(v6.begin(), v6.end(), comparator); // comparator(a, b)
 
 	// using a for-each loop to iterate over vector of pair<int, char>
 

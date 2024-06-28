@@ -23,20 +23,25 @@ public :
 		credits = c;
 	}
 
-	void setName(string n) {
+	customer& setName(string n) {
+		cout << this << endl;
 		name = n;
+		return *this;
 	}
 
-	void setAge(int a) {
+	customer& setAge(int a) {
 		age = a;
+		return *this;
 	}
 
-	void setGender(char g) {
+	customer& setGender(char g) {
 		gender = g;
+		return *this;
 	}
 
-	void setCredits(double c) {
+	customer& setCredits(double c) {
 		credits = c;
+		return *this;
 	}
 
 
@@ -52,6 +57,11 @@ public :
 int main() {
 
 	customer c("Ramanujan", 32, 'M', 1729);
+	c.print();
+
+	cout << &c << endl;
+
+	c.setName("Aryabhata").setAge(74).setCredits(0);
 	c.print();
 
 	return 0;

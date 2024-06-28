@@ -1,5 +1,6 @@
 #include<iostream>
 #include<vector>
+#include<algorithm>
 
 using namespace std;
 
@@ -15,6 +16,22 @@ int add3(int y) {
 	return 3 + y;
 }
 
+class addx {
+
+	int x;
+
+public:
+
+	addx(int x) {
+		this->x = x;
+	}
+
+	int operator()(int y) {
+		return x + y;
+	}
+
+};
+
 int main() {
 
 	vector<int> inp = {1, 2, 3, 4, 5};
@@ -27,7 +44,11 @@ int main() {
 
 	vector<int> out(inp.size());
 
-	transform(inp.begin(), inp.end(), out.begin(), add1);
+	// addx obj1(1); // x is equal to 1
+
+	// transform(inp.begin(), inp.end(), out.begin(), obj1);
+
+	transform(inp.begin(), inp.end(), out.begin(), addx(1)); // we are passing an anonoymous obj
 
 	for (int i = 0; i < out.size(); i++) {
 		cout << out[i] << " ";
@@ -35,7 +56,9 @@ int main() {
 
 	cout << endl;
 
-	transform(inp.begin(), inp.end(), out.begin(), add2);
+	addx obj2(2);
+
+	transform(inp.begin(), inp.end(), out.begin(), obj2);
 
 	for (int i = 0; i < out.size(); i++) {
 		cout << out[i] << " ";
@@ -43,7 +66,9 @@ int main() {
 
 	cout << endl;
 
-	transform(inp.begin(), inp.end(), out.begin(), add3);
+	addx obj3(3);
+
+	transform(inp.begin(), inp.end(), out.begin(), obj3);
 
 	for (int i = 0; i < out.size(); i++) {
 		cout << out[i] << " ";

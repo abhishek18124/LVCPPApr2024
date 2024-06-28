@@ -1,5 +1,6 @@
 #include<iostream>
 #include<vector>
+#include<algorithm>
 
 using namespace std;
 
@@ -17,7 +18,7 @@ int main() {
 
 	// 2. reversing a vector
 
-	// todo ...
+	reverse(v.begin(), v.end()); // [start, end)
 
 	for (int i = 0; i < v.size(); i++) {
 		cout << v[i] << " ";
@@ -27,7 +28,7 @@ int main() {
 
 	// 3. sorting a vector in the increasing order
 
-	// todo ...
+	sort(v.begin(), v.end());
 
 	for (int i = 0; i < v.size(); i++) {
 		cout << v[i] << " ";

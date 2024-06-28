@@ -28,10 +28,25 @@ public :
 
 };
 
+// void operator<<(ostream& cout, customer& c1) {
+// 	cout << "inside opertor<<" << endl;
+// 	cout << c1.name << " " << c1.age << " " << c1.gender << " " << c1.credits << endl;
+// }
+
+ostream& operator<<(ostream& cout, customer& c1) {
+	cout << "inside opertor<<" << endl;
+	cout << c1.name << " " << c1.age << " " << c1.gender << " " << c1.credits << endl;
+	return cout;
+}
+
 int main() {
 
 	customer c1("Ramanujan", 32, 'M', 1729);
 	customer c2("Aryabhata", 74, 'M', 0);
+
+	// cout << c1; // operator<<(cout, c1);
+
+	cout << c1 << c2;
 
 	return 0;
 

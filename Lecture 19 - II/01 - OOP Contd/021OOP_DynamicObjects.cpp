@@ -34,6 +34,18 @@ public :
 
 int main() {
 
+	customer* cptr1 = new customer;
+
+	cin >> cptr1->name;
+	cin >> cptr1->age;
+	cin >> cptr1->gender;
+	cin >> cptr1->credits;
+
+	cptr1->print();
+
+
+	customer* cptr2 = new customer("Ramanujan", 32, 'M', 1729);
+	cptr2->print();
 
 	return 0;
 }

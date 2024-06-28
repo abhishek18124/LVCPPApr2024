@@ -34,7 +34,11 @@ using namespace std;
 int main() {
 
 	// fill constructor
-	vector<int> v(5); // or vector<int> v(5, 100);
+	vector<int> v(10, 0); // or vector<int> v(5, 100);
+
+	cout << "size = " << v.size() << endl;
+	cout << "capacity = " << v.capacity() << endl;
+
 	for (int i = 0; i < v.size(); i++) {
 		cout << v[i] << " ";
 	}
@@ -49,7 +53,14 @@ int main() {
 
 	// range constructor
 	vector<int> v4 = {1, 2, 3, 4, 5};
-	vector<int> v5(v4.begin() + 1, v4.end());
+	// vector<int> v5(v4.begin() + 1, v4.begin() + 4);
+	vector<int> v5(v4.begin() + 1, v4.end() - 1);
+
+	for (int i = 0; i < v5.size(); i++) {
+		cout << v5[i] << " ";
+	}
+
+	cout << endl;
 
 	return 0;
 }

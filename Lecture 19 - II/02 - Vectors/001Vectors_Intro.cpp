@@ -1,8 +1,8 @@
 /*
 
 	Vectors Part I
-	
-	How to create a vector ? 
+
+	How to create a vector ?
 		> use empty container constructor (default constructor)
 	How to add elements to a vector ?
 	    > use vector::push_back to add element at back (constant time operator)
@@ -15,8 +15,8 @@
 		> use vector::max_size to know maximum number of elements that can added in a vector
 	How to check if a vector is empty ?
 	    > use vector::empty or check if vector size is 0
-	How to access elements in a vector at a particular index ? 
-	    > use vector::operator[] 
+	How to access elements in a vector at a particular index ?
+	    > use vector::operator[]
 	    > use vector::at
 	How to iterate over elements in a vector ?
 	    > use indexing like arrays
@@ -34,70 +34,85 @@ int main() {
 
 	vector<int> v; // default constructor or empty container constructor
 
-	cout << "size : " << v.size() << endl;
-	cout << "capacity : " << v.capacity() << endl;
+	cout << "size : " << v.size() << endl; // 0
+	cout << "capacity : " << v.capacity() << endl; // 0
 
 	v.push_back(10);
 
-	cout << "size : " << v.size() << endl;
-	cout << "capacity : " << v.capacity() << endl;
+	cout << "size : " << v.size() << endl; // 1
+	cout << "capacity : " << v.capacity() << endl; // 1
 
 	v.push_back(20);
 
-	cout << "size : " << v.size() << endl;
-	cout << "capacity : " << v.capacity() << endl;
+	cout << "size : " << v.size() << endl; // 2
+	cout << "capacity : " << v.capacity() << endl; // 2
 
 	v.push_back(30);
 
-	cout << "size : " << v.size() << endl;
-	cout << "capacity : " << v.capacity() << endl;
+	cout << "size : " << v.size() << endl; // 3
+	cout << "capacity : " << v.capacity() << endl; // 4
 
 	v.push_back(40);
 
-	cout << "size : " << v.size() << endl;
-	cout << "capacity : " << v.capacity() << endl;
+	cout << "size : " << v.size() << endl; // 4
+	cout << "capacity : " << v.capacity() << endl; // 4
 
 	v.push_back(50);
 
-	cout << "size : " << v.size() << endl;
-	cout << "capacity : " << v.capacity() << endl;
+	cout << "size : " << v.size() << endl; // 5
+	cout << "capacity : " << v.capacity() << endl; // 8
 
-	for(int i=0; i<v.size(); i++) {
-		cout << v[i] << " ";
+	for (int i = 0; i < v.size(); i++) {
+		cout << v[i] << " "; // vector<> class overload operator[]
 	}
 
 	cout << endl;
 
-	for(int x : v) {
+	for (int x : v) {
 		cout << x << " ";
 	}
 
 	cout << endl;
 
-	for(auto it=v.begin(), end=v.end(); it != end; it++) {
+	for (auto it = v.begin(), end = v.end(); it != end; it++) {
 		cout << *it << " ";
 	}
 
 	cout << endl;
-	
+
 	v.pop_back();
 
-	cout << "size : " << v.size() << endl;
-	cout << "capacity : " << v.capacity() << endl;
+	cout << "size : " << v.size() << endl; // 4
+	cout << "capacity : " << v.capacity() << endl; // 8
 
-	for(auto x : v) {
+	for (auto x : v) {
 		cout << x << " ";
 	}
 
 	cout << endl;
 
-	v.clear();
+	v.clear(); // deletes all elements of vector<>
 
-	cout << "size : " << v.size() << endl;
-	cout << "capacity : " << v.capacity() << endl;
+	cout << "size : " << v.size() << endl; // 0
+	cout << "capacity : " << v.capacity() << endl; // 8
 
 	v.empty() ? cout << "true, vector is empty" << endl :
-	            cout << "false, vector is non-empty" << endl;
+	                 cout << "false, vector is non-empty" << endl;
+
+	vector<int> w;
+
+	cout << w.size() << endl;
+	cout << w.capacity() << endl;
+
+	w.resize(10);
+
+	cout << w.size() << endl;
+	cout << w.capacity() << endl;
+
+	w.resize(0);
+
+	cout << w.size() << endl;
+	cout << w.capacity() << endl;
 
 	return 0;
 }

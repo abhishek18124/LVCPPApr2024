@@ -32,5 +32,16 @@ int main() {
 
 	customer c("Ramanujan", 32, 'M', 1729);
 
+	customer* cptr = &c;
+
+	cout << "name = " << (*cptr).name << " " << cptr->name << endl;
+	cout << "age = " << (*cptr).age << " " << cptr->age << endl;
+	cout << "gender = " << (*cptr).gender << " " << cptr->gender << endl;
+	cout << "credits = " << (*cptr).credits << " " << cptr->credits << endl << endl;
+
+	(*cptr).print();
+
+	cptr->print();
+
 	return 0;
 }
