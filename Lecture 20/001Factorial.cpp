@@ -2,9 +2,37 @@
 
 using namespace std;
 
+int f(int n) {
+
+	// base case
+
+	if (n == 0) {
+
+		// find 0!
+
+		return 1;
+
+	}
+
+	// recursive case
+
+	// find n!
+
+	// 1. ask your friend to find n-1!
+
+	int A = f(n - 1);
+
+	return n * A;
+
+	// return n * f(n-1);
+}
+
 int main() {
 
-	int n = 4;
+	int n;
+	cin >> n;
+
+	cout << f(n) << endl;
 
 	return 0;
 }

@@ -1,9 +1,9 @@
 /*
 
-Given a string str, design a recursive algorithm to move all the occurrence of letter x 
+Given a string str, design a recursive algorithm to move all the occurrence of letter x
 to the end of the string str.
 
-Example 
+Example
 	Input : str = "axbcxdxfx"
 	Output: str = "abcdfxxxx"
 
