@@ -18,8 +18,11 @@ Constraints
 */
 
 #include<iostream>
+#include<set>
 
 using namespace std;
+
+set<string> s;
 
 void f(char inp[], char out[], int i, int j) {
 
@@ -27,7 +30,14 @@ void f(char inp[], char out[], int i, int j) {
 
 	if (inp[i] == '\0') { // i == n
 		out[j] = '\0';
-		cout << out << endl;
+
+		// string outStr(out);
+		// s.insert(outStr);
+
+		s.insert(string(out));
+
+		// cout << out << endl;
+
 		return;
 	}
 
@@ -52,6 +62,10 @@ int main() {
 	char out[10];
 
 	f(inp, out, 0, 0);
+
+	for (string subseq : s) {
+		cout << subseq << endl;
+	}
 
 	return 0;
 }

@@ -18,16 +18,24 @@ Constraints
 */
 
 #include<iostream>
+#include<set>
 
 using namespace std;
 
-void f(char inp[], char out[], int i, int j) {
+void f(char inp[], char out[], int i, int j, set<string>& s) {
 
 	// base case
 
 	if (inp[i] == '\0') { // i == n
 		out[j] = '\0';
-		cout << out << endl;
+
+		// string outStr(out);
+		// s.insert(outStr);
+
+		s.insert(string(out));
+
+		// cout << out << endl;
+
 		return;
 	}
 
@@ -38,11 +46,11 @@ void f(char inp[], char out[], int i, int j) {
 	// option 1 - include inp[i] in out[]
 
 	out[j] = inp[i];
-	f(inp, out, i + 1, j + 1);
+	f(inp, out, i + 1, j + 1, s);
 
 	// option 2 - exclude inp[i] from out[]
 
-	f(inp, out, i + 1, j);
+	f(inp, out, i + 1, j, s);
 
 }
 
@@ -50,8 +58,13 @@ int main() {
 
 	char inp[] = "abc";
 	char out[10];
+	set<string> s;
 
-	f(inp, out, 0, 0);
+	f(inp, out, 0, 0, s);
+
+	for (string subseq : s) {
+		cout << subseq << endl;
+	}
 
 	return 0;
 }

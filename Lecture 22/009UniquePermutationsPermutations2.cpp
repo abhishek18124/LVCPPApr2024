@@ -15,15 +15,12 @@ Example
 
 using namespace std;
 
-set<string> s;
-
 void f(char inp[], int n, int i) {
 
 	// base case
 
 	if (i == n) {
-		// cout << inp << endl;
-		s.insert(string(inp));
+		cout << inp << endl;
 		return;
 	}
 
@@ -33,9 +30,22 @@ void f(char inp[], int n, int i) {
 
 	for (int j = i; j <= n - 1; j++) {
 
-		swap(inp[i], inp[j]);
-		f(inp, n, i + 1);
-		swap(inp[i], inp[j]); // backtracking
+		// can you bring inp[j] to the ith position ?
+
+		bool flag = true; // assume you can bring inp[j] to the ith position
+
+		for (int k = j + 1; k < n; k++) {
+			if (inp[k] == inp[j]) {
+				flag = false;
+				break;
+			}
+		}
+
+		if (flag) {
+			swap(inp[i], inp[j]);
+			f(inp, n, i + 1);
+			swap(inp[i], inp[j]); // backtracking
+		}
 
 	}
 
@@ -47,10 +57,6 @@ int main() {
 	int n = strlen(inp);
 
 	f(inp, n, 0);
-
-	for (string uniqPerm : s) {
-		cout << uniqPerm << endl;
-	}
 
 	return 0;
 }

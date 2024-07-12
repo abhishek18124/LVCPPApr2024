@@ -21,12 +21,11 @@ Constraints
 
 using namespace std;
 
-void f(char inp[], char out[], int i, int j) {
+void f(char inp[], string& out, int i) {
 
 	// base case
 
 	if (inp[i] == '\0') { // i == n
-		out[j] = '\0';
 		cout << out << endl;
 		return;
 	}
@@ -37,21 +36,22 @@ void f(char inp[], char out[], int i, int j) {
 
 	// option 1 - include inp[i] in out[]
 
-	out[j] = inp[i];
-	f(inp, out, i + 1, j + 1);
+	out.push_back(inp[i]);
+	f(inp, out, i + 1);
+	out.pop_back(); // backtracking
 
 	// option 2 - exclude inp[i] from out[]
 
-	f(inp, out, i + 1, j);
+	f(inp, out, i + 1);
 
 }
 
 int main() {
 
 	char inp[] = "abc";
-	char out[10];
+	string out;
 
-	f(inp, out, 0, 0);
+	f(inp, out, 0);
 
 	return 0;
 }

@@ -38,7 +38,9 @@ void f(char inp[], char out[], int i, int j) {
 	// option 1 - include inp[i] in out[]
 
 	out[j] = inp[i];
-	f(inp, out, i + 1, j + 1);
+	j++;
+	f(inp, out, i + 1, j);
+	j--; // backtracking
 
 	// option 2 - exclude inp[i] from out[]
 
