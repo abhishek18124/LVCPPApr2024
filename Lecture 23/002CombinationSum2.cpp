@@ -29,7 +29,7 @@ void generateCombinations(int t, vector<int> c, vector<int>& comb, int i) {
 		if (c[j] <= t) {
 
 			comb.push_back(c[j]);
-			generateCombinations(t - c[j], c, comb, j); // jth element can be picked unlimited times
+			generateCombinations(t - c[j], c, comb, j + 1); // each element can be picked only once
 			comb.pop_back();
 
 		}

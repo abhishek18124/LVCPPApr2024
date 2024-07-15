@@ -15,6 +15,10 @@ void printPath(char path[][10], int m, int n) {
 }
 
 
+int dx[] = {0, 0, 1, -1};
+int dy[] = {1, -1, 0, 0};
+
+
 void f(char maze[][10], char path[][10], int m, int n, int i, int j) {
 
 	// base case
@@ -38,18 +42,20 @@ void f(char maze[][10], char path[][10], int m, int n, int i, int j) {
 
 	// recursive case
 
-	if (path[i][j] == '1') {
-		return;
+	path[i][j] = '1';
+	maze[i][j] = 'X';
+
+	// f(maze, path, m, n, i, j + 1); // move right
+	// f(maze, path, m, n, i, j - 1); // move left
+	// f(maze, path, m, n, i + 1, j); // move down
+	// f(maze, path, m, n, i - 1, j); // move up
+
+	for (int k = 0; k < 4; k++) {
+		f(maze, path, m, n, i + dx[k], j + dy[k]);
 	}
 
-	path[i][j] = '1';
-
-	f(maze, path, m, n, i, j + 1); // move right
-	f(maze, path, m, n, i, j - 1); // move left
-	f(maze, path, m, n, i + 1, j); // move down
-	f(maze, path, m, n, i - 1, j); // move up
-
 	path[i][j] = '0';
+	maze[i][j] = '0';
 
 }
 

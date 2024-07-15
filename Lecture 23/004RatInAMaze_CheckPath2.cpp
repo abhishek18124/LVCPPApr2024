@@ -33,6 +33,11 @@ bool f(char maze[][10], int m, int n, int i, int j) {
 
 	// base case
 
+	if (i == m || j == n) { // you are outside the maze
+		return false;
+	}
+
+
 	if (maze[i][j] == 'X') { // you are at a blocked cell
 		return false;
 	}
@@ -48,22 +53,6 @@ bool f(char maze[][10], int m, int n, int i, int j) {
 
 	// decide the next step
 
-	if (i == m - 1) {
-
-		// move right
-
-		return f(maze, m, n, i, j + 1);
-
-	}
-
-	if (j == n - 1) {
-
-		// move down
-
-		return f(maze, m, n, i + 1, j);
-
-	}
-
 	// option 1 : move right
 
 	// option 2 : move down
@@ -76,9 +65,9 @@ int main() {
 
 	char maze[][10] = {
 		"0000",
-		"0XX0",
+		"00X0",
 		"000X",
-		"0X0X"
+		"0X00"
 	};
 
 	int m = 4;
