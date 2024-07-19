@@ -4,21 +4,21 @@ using namespace std;
 
 class ListNode {
 
-	public :
+public :
 
-		int val;
-		ListNode* next;
+	int val;
+	ListNode* next;
 
-		ListNode(int val) {
-			this->val = val;
-			this->next = NULL;
-		}
+	ListNode(int val) {
+		this->val = val;
+		this->next = NULL;
+	}
 
 };
 
 
 void insertAtHead(ListNode*& head, int val) {
-	
+
 	ListNode* n = new ListNode(val);
 	n->next = head;
 	head = n;
@@ -26,18 +26,18 @@ void insertAtHead(ListNode*& head, int val) {
 }
 
 void printLinkedList(ListNode* head) {
-	
-	while(head != NULL) {
+
+	while (head != NULL) {
 		cout << head->val << " ";
 		head = head->next;
 	}
-	
+
 	cout << endl;
 }
 
 void deleteAtHead(ListNode*& head) {
 
-	if(!head) { // head == NULL
+	if (!head) { // head == NULL
 		// linkedList is empty
 		return;
 	}
@@ -45,6 +45,36 @@ void deleteAtHead(ListNode*& head) {
 	ListNode* temp = head;
 	head = head->next;
 	delete temp;
+}
+
+// time : O(n)
+
+void deleteAtTail(ListNode*& head) {
+
+	if (head == NULL) {
+		// LinkedList is empty
+		return;
+	}
+
+	if (head->next == NULL) {
+		// LinkedList has one node
+		deleteAtHead(head);
+		return;
+	}
+
+	// LinkedList has >=2 nodes
+
+	ListNode* prev = NULL;
+	ListNode* cur = head;
+
+	while (cur->next != NULL) {
+		prev = cur;
+		cur = cur->next;
+	}
+
+	prev->next = NULL;
+	delete cur;
+
 }
 
 int main() {
@@ -56,10 +86,10 @@ int main() {
 	insertAtHead(head, 30);
 	insertAtHead(head, 20);
 	insertAtHead(head, 10);
-	
+
 	printLinkedList(head);
 
-	// todo ...
+	deleteAtTail(head);
 
 	printLinkedList(head);
 

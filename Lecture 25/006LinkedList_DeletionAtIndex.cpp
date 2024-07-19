@@ -4,21 +4,21 @@ using namespace std;
 
 class ListNode {
 
-	public :
+public :
 
-		int val;
-		ListNode* next;
+	int val;
+	ListNode* next;
 
-		ListNode(int val) {
-			this->val = val;
-			this->next = NULL;
-		}
+	ListNode(int val) {
+		this->val = val;
+		this->next = NULL;
+	}
 
 };
 
 
 void insertAtHead(ListNode*& head, int val) {
-	
+
 	ListNode* n = new ListNode(val);
 	n->next = head;
 	head = n;
@@ -26,18 +26,18 @@ void insertAtHead(ListNode*& head, int val) {
 }
 
 void printLinkedList(ListNode* head) {
-	
-	while(head != NULL) {
+
+	while (head != NULL) {
 		cout << head->val << " ";
 		head = head->next;
 	}
-	
+
 	cout << endl;
 }
 
 void deleteAtHead(ListNode*& head) {
 
-	if(!head) { // head == NULL
+	if (!head) { // head == NULL
 		// linkedList is empty
 		return;
 	}
@@ -47,15 +47,43 @@ void deleteAtHead(ListNode*& head) {
 	delete temp;
 }
 
-ListNode* getListNode(int j, ListNode* temp) {
+ListNode* getNode(ListNode* head, int j) {
 
-	int k = 0;
-	while(temp != NULL && k < j) { // while(temp && k < j)
-		temp = temp->next;
+	// return the address of the node present at the jth index of the given LinkedList
+
+	int k = 1;
+	while (head != NULL and k <= j) {
+		head = head->next;
 		k++;
 	}
 
-	return temp;
+	return head;
+
+}
+
+// time : O(n) due to getNode()
+
+void deleteAtIndex(ListNode*& head, int i) {
+
+	if (i == 0) {
+		deleteAtHead(head);
+		return;
+	}
+
+	ListNode* prev = getNode(head, i - 1);
+	if (prev == NULL) {
+		// i > len of LinkedList
+		return;
+	}
+
+	ListNode* cur = getNode(head, i); // prev->next
+	if (cur == NULL) {
+		// i >= len of the LinkedList
+		return;
+	}
+
+	prev->next = cur->next;
+	delete cur;
 
 }
 
@@ -68,7 +96,11 @@ int main() {
 	insertAtHead(head, 30);
 	insertAtHead(head, 20);
 	insertAtHead(head, 10);
-	
+
+	printLinkedList(head);
+
+	deleteAtIndex(head, 0);
+
 	printLinkedList(head);
 
 	return 0;
