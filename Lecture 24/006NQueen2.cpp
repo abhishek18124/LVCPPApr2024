@@ -21,31 +21,32 @@ Constraint:
 */
 
 #include<iostream>
+#include<vector>
 
 using namespace std;
 
-void f(int n, int out[], int r) {
+void f(int n, vector<int>& out, int r) {
 
 	// base case - 'n' queens have been placed on the 'nxn' chessboard
 
 	if (r == n) {
 
-		// for (int i = 0; i < n; i++) {
-		// 	cout << out[i] << " ";
-		// }
-
-		// cout << endl;
-
 		for (int i = 0; i < n; i++) {
-			for (int j = 0; j < n; j++) {
-				if (out[i] == j) {
-					cout << "Q ";
-				} else {
-					cout << "_ ";
-				}
-			}
-			cout << endl;
+			cout << out[i] << " ";
 		}
+
+		cout << endl;
+
+		// for (int i = 0; i < n; i++) {
+		// 	for (int j = 0; j < n; j++) {
+		// 		if (out[i] == j) {
+		// 			cout << "Q ";
+		// 		} else {
+		// 			cout << "_ ";
+		// 		}
+		// 	}
+		// 	cout << endl;
+		// }
 
 		cout << endl;
 
@@ -76,8 +77,9 @@ void f(int n, int out[], int r) {
 
 		if (flag) {
 
-			out[r] = j;
+			out.push_back(j);
 			f(n, out, r + 1);
+			out.pop_back(); // backtracking
 
 		}
 
@@ -91,7 +93,7 @@ int main() {
 	int n;
 	cin >> n;
 
-	int out[10];
+	vector<int> out;
 
 	f(n, out, 0);
 
