@@ -16,21 +16,42 @@ public:
 };
 
 void insertAtHead(ListNode*& head, int val) {
-	
+
 	ListNode* n = new ListNode(val);
-	n->next = head; 
+	n->next = head;
 	head = n;
 
 }
 
 void printLinkedList(ListNode* head) {
 
-	while(head) { // head != NULL
+	while (head) { // head != NULL
 		cout << head->val << " ";
 		head = head->next;
 	}
 
 	cout << endl;
+
+}
+
+// steps = n/2 ~ O(n)
+
+ListNode* findMidPoint(ListNode* head) {
+
+	if (head == NULL) {
+		// LinkedList is empty
+		return NULL;
+	}
+
+	ListNode* slow = head;
+	ListNode* fast = head->next;
+
+	while (fast != NULL and fast->next != NULL) {
+		slow = slow->next;
+		fast = fast->next->next;
+	}
+
+	return slow;
 
 }
 
@@ -46,7 +67,9 @@ int main() {
 
 	printLinkedList(head);
 
-	// todo ...
-	
+	ListNode* midPoint = findMidPoint(head);
+
+	midPoint != NULL ? cout << midPoint->val << endl : cout << "LinkedList is empty" << endl;
+
 	return 0;
 }

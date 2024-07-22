@@ -18,20 +18,43 @@ public:
 void insertAtHead(ListNode*& head, int val) {
 
 	ListNode* n = new ListNode(val);
-	n->next = head; 
+	n->next = head;
 	head = n;
 
 }
 
 
 void printLinkedList(ListNode* head) {
-	
-	while(head) { // head != NULL
+
+	while (head) { // head != NULL
 		cout << head->val << " ";
 		head = head->next;
 	}
 
 	cout << endl;
+}
+
+// time : O(n)
+// space: O(1)
+
+ListNode* f(ListNode* head, int k) {
+
+	ListNode* fast = head;
+
+	int i = 1;
+	while (i <= k) {
+		fast = fast->next;
+		i++;
+	}
+
+	ListNode* slow = head;
+	while (fast != NULL) {
+		slow = slow->next;
+		fast = fast->next;
+	}
+
+	return slow;
+
 }
 
 int main() {
@@ -48,9 +71,11 @@ int main() {
 
 	printLinkedList(head);
 
-	int k = 2;
+	int k = 3;
 
-	// todo ...
+	ListNode* kthLastNode = f(head, k);
+
+	cout << kthLastNode->val << endl;
 
 	return 0;
 }
