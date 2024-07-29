@@ -5,12 +5,32 @@ using namespace std;
 
 void print(stack<int> s) {
 
-	while(!s.empty()) {
+	while (!s.empty()) {
 		cout << s.top() << endl;
 		s.pop();
 	}
 
 	cout << endl;
+
+}
+
+void insertAtBottom(stack<int>& s, int data) {
+
+	// base case
+
+	if (s.empty()) { // s.size() == 0
+		s.push(data);
+		return;
+	}
+
+	// recursive case
+
+	int x = s.top();
+	s.pop();
+
+	insertAtBottom(s, data);
+
+	s.push(x);
 
 }
 
@@ -28,7 +48,7 @@ int main() {
 
 	int data = 0;
 
-	// todo ...
+	insertAtBottom(s, data);
 
 	print(s);
 

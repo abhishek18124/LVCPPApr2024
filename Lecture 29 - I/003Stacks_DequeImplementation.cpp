@@ -11,23 +11,26 @@ class stack {
 public :
 
 	void push(T val) {
-
+		d.push_front(val);
 	}
 
 	void pop() {
-
+		if (empty()) {
+			return;
+		}
+		d.pop_front();
 	}
 
 	int size() {
-
+		return d.size();
 	}
 
 	T top() {
-
+		return d.front(); // d[0]
 	}
 
 	bool empty() {
-
+		return d.empty();
 	}
 
 };

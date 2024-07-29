@@ -10,23 +10,26 @@ class stack {
 public :
 
 	void push(int val) {
-
+		v.push_back(val);
 	}
 
 	void pop() {
-
+		if (empty()) {
+			return;
+		}
+		v.pop_back();
 	}
 
 	int size() {
-
+		return v.size();
 	}
 
 	int top() {
-
+		return v.back(); // return v[v.size()-1];
 	}
 
 	bool empty() {
-
+		return v.empty(); // v.size() == 0
 	}
 
 };

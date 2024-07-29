@@ -11,23 +11,26 @@ class stack {
 public :
 
 	void push(T val) {
-
+		dll.push_back(val);
 	}
 
 	void pop() {
-
+		if (empty()) {
+			return;
+		}
+		dll.pop_back();
 	}
 
 	int size() {
-
+		return dll.size();
 	}
 
 	T top() {
-
+		return dll.back();
 	}
 
 	bool empty() {
-
+		return dll.empty();
 	}
 
 };
