@@ -2,22 +2,24 @@
 
 using namespace std;
 
+template <typename T>
 class ListNode {
 public:
 
-	int val;
-	ListNode* next;
+	T val;
+	ListNode<T>* next;
 
-	ListNode(int val) {
+	ListNode(T val) {
 		this->val = val;
 		this->next = NULL;
 	}
 
 };
 
+template <typename T>
 class forward_list {
 
-	ListNode* head;
+	ListNode<T>* head;
 	int  cnt;
 
 public :
@@ -27,8 +29,8 @@ public :
 		cnt = 0;
 	}
 
-	void push_front(int val) {
-		ListNode* n = new ListNode(val);
+	void push_front(T val) {
+		ListNode<T>* n = new ListNode<T>(val);
 		n->next = head;
 		head = n;
 		cnt++;
@@ -40,7 +42,7 @@ public :
 			return;
 		}
 
-		ListNode* temp = head;
+		ListNode<T>* temp = head;
 		head = head->next;
 		delete temp;
 		cnt--;
@@ -54,12 +56,12 @@ public :
 		return head == NULL; // cnt == 0
 	}
 
-	int front() { // if you call front() on empty linkedList it is undefined
+	T front() { // if you call front() on empty linkedList it is undefined
 		return head->val;
 	}
 
 	void traverse() {
-		ListNode* temp = head;
+		ListNode<T>* temp = head;
 		while (temp != NULL) {
 			cout << temp->val << " ";
 			temp = temp->next;
@@ -71,13 +73,13 @@ public :
 
 int main() {
 
-	forward_list fw;
+	forward_list<char> fw;
 
-	fw.push_front(50);
-	fw.push_front(40);
-	fw.push_front(30);
-	fw.push_front(20);
-	fw.push_front(10);
+	fw.push_front('e');
+	fw.push_front('d');
+	fw.push_front('c');
+	fw.push_front('b');
+	fw.push_front('a');
 
 	cout <<  "head->val : " << fw.front() << endl;
 
