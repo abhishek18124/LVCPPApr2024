@@ -17,9 +17,9 @@ class stack {
 public:
 
 	void push(T data) {
-		if(q1.empty() && q2.empty()) {
+		if (q1.empty() && q2.empty()) {
 			q1.push(data); // or q2.push(data)
-		} else if(q1.empty() && !q2.empty()) {
+		} else if (q1.empty() && !q2.empty()) {
 			q2.push(data);
 		} else {
 			q1.push(data);
@@ -27,11 +27,11 @@ public:
 	}
 
 	void pop() {
-		if(q1.empty() && q2.empty()) {
+		if (q1.empty() && q2.empty()) {
 			// stack is empty
-		} else if(q1.empty() && !q2.empty()) {
+		} else if (q1.empty() && !q2.empty()) {
 			// transfer n-1 elements from q2 to q1
-			while(q2.size() > 1) {
+			while (q2.size() > 1) {
 				q1.push(q2.front());
 				q2.pop();
 			}
@@ -39,7 +39,7 @@ public:
 			q2.pop();
 		} else {
 			// transfer n-1 elements from q1 to q2
-			while(q1.size() > 1) {
+			while (q1.size() > 1) {
 				q2.push(q1.front());
 				q1.pop();
 			}
@@ -49,29 +49,38 @@ public:
 	}
 
 	T top() {
-		if(q1.empty() && !q2.empty()) {
-			// transfer n-1 elements from q2 to q1
-			while(q2.size() > 1) {
-				q1.push(q2.front());
-				q2.pop();
-			}
-			// save & pop the nth element from q2 and transfer it to q1
-			T ans = q2.front();
-			q2.pop();
-			q1.push(ans);
-			return ans;
-		} else {
-			// transfer n-1 elements from q1 to q2
-			while(q1.size() > 1) {
-				q2.push(q1.front());
-				q1.pop();
-			}
-			// save & pop the nth element from q1 and transfer it to q2
-			T ans = q1.front();
-			q1.pop();
-			q2.push(ans);
-			return ans;
+
+		if (q1.empty() and !q2.empty()) {
+			// top of the stack is present at the rear end of q2
+			return q2.back();
+		} else if (!q1.empty() and q2.empty()) {
+			// top of the stack is present  at the rear end of q1
+			return q1.back();
 		}
+
+		// if (q1.empty() && !q2.empty()) {
+		// 	// transfer n-1 elements from q2 to q1
+		// 	while (q2.size() > 1) {
+		// 		q1.push(q2.front());
+		// 		q2.pop();
+		// 	}
+		// 	// save & pop the nth element from q2 and transfer it to q1
+		// 	T ans = q2.front();
+		// 	q2.pop();
+		// 	q1.push(ans);
+		// 	return ans;
+		// } else {
+		// 	// transfer n-1 elements from q1 to q2
+		// 	while (q1.size() > 1) {
+		// 		q2.push(q1.front());
+		// 		q1.pop();
+		// 	}
+		// 	// save & pop the nth element from q1 and transfer it to q2
+		// 	T ans = q1.front();
+		// 	q1.pop();
+		// 	q2.push(ans);
+		// 	return ans;
+		// }
 	}
 
 	bool empty() {
@@ -95,7 +104,7 @@ int main() {
 
 	cout << "size = " << s.size() << endl;
 
-	while(!s.empty()) {
+	while (!s.empty()) {
 		cout << s.top() << endl;
 		s.pop();
 	}
@@ -103,6 +112,6 @@ int main() {
 	cout << endl;
 
 	s.empty() ? cout << "true" << endl : cout << "false" << endl;
- 
-	return 0;	
+
+	return 0;
 }

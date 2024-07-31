@@ -11,23 +11,27 @@ class queue {
 public:
 
 	void push(T val) {
-
+		d.push_back(val);
 	}
 
 	void pop() {
-
+		if (empty()) {
+			// queue is empty
+			return;
+		}
+		d.pop_front();
 	}
 
 	T front() {
-
+		return d.front(); // d[0]
 	}
 
 	int size() {
-
+		return d.size();
 	}
 
 	bool empty() {
-
+		return d.empty();
 	}
 
 };
