@@ -22,7 +22,7 @@ TreeNode* buildTree() {
 
 	// base case
 
-	if(val == -1) {
+	if (val == -1) {
 		// construct an empty tree and return pointer to its root TreeNode
 		return NULL;
 	}
@@ -40,7 +40,7 @@ TreeNode* buildTree() {
 	// 3. ask your friend to construct the rightSubtree from the preOrder traversal of the rightSubtree
 
 	root->right = buildTree();
-	
+
 	return root;
 
 }
@@ -49,7 +49,7 @@ TreeNode* buildTree() {
 void printPreOrder(TreeNode* root) {
 
 	// base case
-	if(!root) { // root == NULL
+	if (!root) { // root == NULL
 		cout << -1 << " ";
 		return;
 	}
@@ -67,13 +67,58 @@ void printPreOrder(TreeNode* root) {
 
 }
 
+bool flipEquiv(TreeNode* root1, TreeNode* root2) {
+
+	// base case
+
+	if (root1 == NULL and root2 == NULL) {
+		return true;
+	}
+
+	if (root1 == NULL) { // root2 != NULL
+		return false;
+	}
+
+	if (root2 == NULL) { // root1 != NULL
+		return false;
+	}
+
+	// root1 != NULL and root2 != NULL
+
+	if (root1->val != root2->val) {
+		return false;
+	}
+
+	// recursive case
+
+	// decide for the root node
+
+	// option 1 : do a flip operation at the root node
+
+	swap(root1->left, root1->right);
+	if (flipEquiv(root1->left, root2->left) and flipEquiv(root1->right, root2->right)) {
+		return true;
+	}
+	swap(root1->left, root1->right); // backtracking
+
+
+	// option 2: don't do a flip operation at the root node
+
+	if (flipEquiv(root1->left, root2->left) and flipEquiv(root1->right, root2->right)) {
+		return true;
+	}
+
+	return false;
+
+}
+
 int main() {
 
 	TreeNode* root1 = buildTree();
 	TreeNode* root2 = buildTree();
-	
-	flipEquiv(roo1, root2) ? cout << "true" << endl :
-	                         cout << "false" << endl;
+
+	flipEquiv(root1, root2) ? cout << "true" << endl :
+	                               cout << "false" << endl;
 
 	return 0;
 }

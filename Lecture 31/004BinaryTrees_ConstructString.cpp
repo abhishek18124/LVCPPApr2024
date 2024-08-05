@@ -21,7 +21,7 @@ TreeNode* buildTree() {
 
 	// base case
 
-	if(val == -1) {
+	if (val == -1) {
 		// construct an empty tree and return pointer to its root TreeNode
 		return NULL;
 	}
@@ -39,8 +39,46 @@ TreeNode* buildTree() {
 	// 3. ask your friend to construct the rightSubtree from the preOrder traversal of the rightSubtree
 
 	root->right = buildTree();
-	
+
 	return root;
+
+}
+
+string tree2str(TreeNode* root) {
+
+	// base case
+
+	if (root == NULL) {
+		return "";
+	}
+
+	// recursive case
+
+	// convert the tree into a string
+
+	// 1. ask your friend to convert the leftSubtree into a string
+
+	string leftStr = tree2str(root->left);
+
+	// 2. ask your friend to convert the rightSubtree into a string
+
+	string rightStr = tree2str(root->right);
+
+	if (root->left != NULL and root->right != NULL) {
+
+		return to_string(root->val) + "(" + leftStr + ")(" + rightStr + ")";
+
+	} else if (root->left != NULL) { // root->right == NULL
+
+		return to_string(root->val) + "(" + leftStr + ")";
+
+	} else if (root->right != NULL) { // root->left == NULL
+
+		return to_string(root->val) + "()(" + rightStr + ")";
+
+	}
+
+	return to_string(root->val); // root->left == NULL and root->right == NULL
 
 }
 
