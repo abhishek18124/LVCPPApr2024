@@ -83,21 +83,125 @@ int computeHeight(TreeNode* root) {
 
 }
 
+// time : O(n^2)
+
 bool checkHeightBalanced(TreeNode* root) {
 
 	// base case
 
+	if (root == NULL) {
+		return true;
+	}
+
 	// recursive case
 
+	// check if the given tree is heightBalanced
+
+	// 1. ask your friend check if the leftSubtree is heightBalanced
+
+	bool leftIsBalanced = checkHeightBalanced(root->left);
+
+	// 2. ask your friend check if the rightSubtree is heightBalanced
+
+	bool rightIsBalanced = checkHeightBalanced(root->right);
+
+	// 3. check if the heightBalance property works at the root node
+
+	bool rootIsBalanced = abs(computeHeight(root->left) - computeHeight(root->right)) <= 1 ? true : false;
+
+	return leftIsBalanced and rightIsBalanced and rootIsBalanced;
+
 }
+
+class Pair {
+public:
+	int height;
+	bool isBalanced;
+};
+
+// time : O(n)
+
+Pair checkHeightBalancedEfficient(TreeNode* root) {
+
+	Pair p;
+
+	// base case
+
+	if (root == NULL) {
+		p.height = -1;
+		p.isBalanced = true;
+		return p;
+	}
+
+	// recursive case
+
+	// 1. ask your friend to check if the leftSubtree is heightBalanced and also find the height of the leftSubtree
+
+	Pair left = checkHeightBalancedEfficient(root->left);
+
+	// 2. ask your friend to check if the rightSubtree is heightBalanced and also find the height of the rightSubtree
+
+	Pair right = checkHeightBalancedEfficient(root->right);
+
+	// 3. check if the heightBalance property works at the root node
+
+	bool rootIsBalanced = abs(left.height - right.height) <= 1 ? true : false;
+
+	p.height = 1 + max(left.height, right.height);
+	p.isBalanced = left.isBalanced and right.isBalanced and rootIsBalanced;
+
+	return p;
+
+}
+
+
+pair<int, bool> checkHeightBalancedEfficient2(TreeNode* root) {
+
+	pair<int, bool> p; // <height, isBalanced>
+
+	// base case
+
+	if (root == NULL) {
+		p.first = -1;
+		p.second = true;
+		return p;
+	}
+
+	// recursive case
+
+	// 1. ask your friend to check if the leftSubtree is heightBalanced and also find the height of the leftSubtree
+
+	pair<int, bool> left = checkHeightBalancedEfficient2(root->left);
+
+	// 2. ask your friend to check if the rightSubtree is heightBalanced and also find the height of the rightSubtree
+
+	pair<int, bool> right = checkHeightBalancedEfficient2(root->right);
+
+	// 3. check if the heightBalance property works at the root node
+
+	bool rootIsBalanced = abs(left.first - right.first) <= 1 ? true : false;
+
+	p.first = 1 + max(left.first, right.first);
+	p.second = left.second and right.second and rootIsBalanced;
+
+	return p;
+
+}
+
 
 int main() {
 
 	TreeNode* root = buildTree();
 
-	checkHeightBalanced(root) ? cout << "height-balanced!" << endl :
-	                                 cout << "not height-balanced" << endl;
+	checkHeightBalanced(root) ? cout << "height-balanced!" << endl : cout << "not height-balanced" << endl;
 
+	Pair p = checkHeightBalancedEfficient(root);
+
+	p.isBalanced ? cout << "height-balanced!" << endl : cout << "not height-balanced" << endl;
+
+	pair<int, bool> p2 = checkHeightBalancedEfficient2(root);
+
+	p2.second ? cout << "height-balanced!" << endl : cout << "not height-balanced" << endl;
 
 	return 0;
 }

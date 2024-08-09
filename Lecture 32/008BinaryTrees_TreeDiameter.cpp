@@ -86,11 +86,75 @@ int computeHeight(TreeNode* root) {
 
 }
 
+// time : O(n^2)
+
 int computeDiameter(TreeNode* root) {
 
 	// base case
 
+	if (root == NULL) {
+		return 0;
+	}
+
 	// recursive case
+
+	// find the diameter of the given tree
+
+	// 1. ask your friend to find the diameter of the leftSubtree
+
+	int leftDia = computeDiameter(root->left);
+
+	// 2. ask your friend to find the diameter of the rightSubtree
+
+	int rightDia = computeDiameter(root->right);
+
+	// 3. find the length of the longest path that goes throught the root node
+
+	int rootPathLen = computeHeight(root->left) + computeHeight(root->right) + 2;
+
+	return max(leftDia, max(rightDia, rootPathLen));
+
+}
+
+class Pair {
+public:
+	int height;
+	int diameter;
+};
+
+// time : O(n)
+
+Pair computeDiameterEfficient(TreeNode* root) {
+
+	Pair p;
+
+	// base case
+
+	if (root == NULL) {
+		p.height = -1;
+		p.diameter = 0;
+		return p;
+	}
+
+	// recursive case
+
+	// 1. ask your friend to find the diameter and height of the leftSubtree
+
+	Pair left = computeDiameterEfficient(root->left);
+
+	// 1. ask your friend to find the diameter and height of the rightSubtree
+
+	Pair right = computeDiameterEfficient(root->right);
+
+	// 3. find the length of the longest path that goes throught the root node
+
+	int rootPathLen = left.height + right.height + 2;
+
+	p.height = 1 + max(left.height, right.height);
+	p.diameter = max(left.diameter, max(right.diameter, rootPathLen));
+
+	return p;
+
 
 }
 
@@ -99,6 +163,10 @@ int main() {
 	TreeNode* root = buildTree();
 
 	cout << computeDiameter(root) << endl;
+
+	Pair p = computeDiameterEfficient(root);
+
+	cout << p.diameter << endl;
 
 	return 0;
 }

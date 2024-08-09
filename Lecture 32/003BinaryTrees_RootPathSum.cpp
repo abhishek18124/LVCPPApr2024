@@ -21,7 +21,31 @@ public :
 
 int countPaths(TreeNode* root, int targetSum) {
 
-	// todo ...
+	// base case
+
+	if (root == NULL) {
+		return 0;
+	}
+
+	// recursive case
+
+	// count no. of paths in the given tree that start at the root and whose sum is equal to targetSum
+
+	int cnt = 0;
+
+	// 1. ask your friend to count no. of paths in the leftSubtree that start at the root and whose sum is equal to targetSum-root->val
+
+	cnt += countPaths(root->left, targetSum - root->val);
+
+	// 2. ask your friend to count no. of paths in the rightSubtree that start at the root and whose sum is equal to targetSum-root->val
+
+	cnt += countPaths(root->right, targetSum - root->val);
+
+	if (root->val == targetSum) {
+		cnt++;
+	}
+
+	return cnt;
 
 }
 

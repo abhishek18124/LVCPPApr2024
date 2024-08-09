@@ -19,14 +19,7 @@ public :
 
 };
 
-void printPath(const vector<int>& path) {
-	for (int i = 0; i < path.size(); i++) {
-		cout << path[i] << " ";
-	}
-	cout << endl;
-}
-
-void pathSum(TreeNode* root, int targetSum, vector<int>& path) {
+void helper(TreeNode* root, int targetSum, vector<int>& path, vector<vector<int>>& allPaths) {
 
 	// base case
 
@@ -39,7 +32,7 @@ void pathSum(TreeNode* root, int targetSum, vector<int>& path) {
 		if (root->val == targetSum) {
 			// you've found a valid path
 			path.push_back(root->val);
-			printPath(path);
+			allPaths.push_back(path);
 			path.pop_back();
 		}
 
@@ -50,12 +43,21 @@ void pathSum(TreeNode* root, int targetSum, vector<int>& path) {
 	// recursive case
 
 	path.push_back(root->val);
-	pathSum(root->left, targetSum - root->val, path);
-	pathSum(root->right, targetSum - root->val, path);
+	helper(root->left, targetSum - root->val, path, allPaths);
+	helper(root->right, targetSum - root->val, path, allPaths);
 	path.pop_back(); // backtracking
 
 }
 
+vector<vector<int>> pathSum(TreeNode* root, int targetSum) {
+
+	vector<vector<int>> allPaths;
+	vector<int> path;
+	helper(root, targetSum, path, allPaths);
+	return allPaths;
+
+
+}
 
 int main() {
 
@@ -76,11 +78,14 @@ int main() {
 
 	int targetSum = 22;
 
-	vector<int> path;
+	vector<vector<int>> allPaths = pathSum(root, targetSum);
 
-	pathSum(root, targetSum, path);
-
-
+	for (vector<int> path : allPaths) {
+		for (int nodeVal : path) {
+			cout << nodeVal << " ";
+		}
+		cout << endl;
+	}
 
 	return 0;
 }
