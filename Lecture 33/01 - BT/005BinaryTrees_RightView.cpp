@@ -48,12 +48,76 @@ TreeNode* buildTree() {
 
 }
 
+void rightViewBfs(TreeNode* root) {
+
+	queue<TreeNode*> q;
+	q.push(root);
+	q.push(NULL);
+
+	while (!q.empty()) {
+
+		TreeNode* front = q.front();
+		q.pop();
+
+		if (front == NULL) {
+
+			if (!q.empty()) {
+				q.push(NULL);
+			}
+
+		} else {
+
+			// process the front node
+
+			if (q.front() == NULL) {
+				cout << front->val << " ";
+			}
+
+			if (front->left != NULL) {
+				q.push(front->left);
+			}
+
+			if (front->right != NULL) {
+				q.push(front->right);
+			}
+
+		}
+
+	}
+
+}
+
+int maxLevel = -1;
+
+void rightViewDfs(TreeNode* root, int level) {
+
+	// base case
+
+	if (root == NULL) {
+		return;
+	}
+
+	// recursive case
+
+	if (level > maxLevel) {
+		cout << root->val << " ";
+		maxLevel = level;
+	}
+
+	rightViewDfs(root->right, level + 1);
+	rightViewDfs(root->left, level + 1);
+
+}
+
+
 int main() {
 
 	TreeNode* root = NULL;
 	root = buildTree();
 
-	// todo ...
+	// rightViewBfs(root);
+
+	rightViewDfs(root, 0);
 
 	return 0;
 }

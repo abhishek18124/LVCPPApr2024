@@ -23,10 +23,13 @@ class Triple {
 public :
 
 	int numCameras;
-	bool isCovered;
+	bool isCovered; // isMonitored
 	bool hasCamera;
 
 };
+
+// time : O(n)
+// space: O(h) where h is the height of recursion tree due to function call-stack
 
 Triple helper(TreeNode* root) {
 
@@ -34,16 +37,52 @@ Triple helper(TreeNode* root) {
 
 	// base case
 
-	// todo ...
+	if (root == NULL) {
+
+		t.numCameras = 0;
+		t.hasCamera = false;
+		t.isCovered = true;
+
+		return t;
+
+	}
 
 	// recursive case
 
-	// todo ...
+	Triple left = helper(root->left);
+	Triple right = helper(root->right);
+
+	// make a decision for the root node
+
+	if (!left.isCovered || !right.isCovered) {
+
+		// install a camera at the root node
+
+		t.numCameras = left.numCameras + right.numCameras + 1;
+		t.hasCamera = true;
+		t.isCovered = true;
+
+		return t;
+
+	}
+
+	// don't install camera at the root node
+
+	t.numCameras = left.numCameras + right.numCameras;
+	t.hasCamera = false;
+	t.isCovered = left.hasCamera || right.hasCamera ? true : false;
+
+	return t;
+
 }
 
 int minCameraCover(TreeNode* root) {
 
 	Triple t = helper(root);
+	if (t.isCovered == false) {
+		// install camera at the root node
+		return t.numCameras + 1;
+	}
 	return t.numCameras;
 
 }
