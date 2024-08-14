@@ -23,10 +23,10 @@ int main() {
 	m.push(6);
 	m.push(9);
 	m.push(8);
-	
+
 	cout << m.size() << endl;
 
-	while(!m.empty()) {
+	while (!m.empty()) {
 		cout << m.top() << " ";
 		m.pop();
 	}

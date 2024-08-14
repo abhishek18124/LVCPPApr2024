@@ -9,7 +9,7 @@
 
 using namespace std;
 
-class minHeap {
+class maxHeap {
 
 	vector<int> v;
 
@@ -17,23 +17,23 @@ class minHeap {
 
 		// fix the heap propery at the ith index
 
-		int minIdx = i;
+		int maxIdx = i;
 
 		int leftIdx = 2 * i + 1;
-		if (leftIdx < v.size() and v[leftIdx] < v[minIdx]) {
-			minIdx = leftIdx;
+		if (leftIdx < v.size() and v[leftIdx] > v[maxIdx]) {
+			maxIdx = leftIdx;
 		}
 
 		int rightIdx = 2 * i + 2;
-		if (rightIdx < v.size() and v[rightIdx] < v[minIdx]) {
-			minIdx = rightIdx;
+		if (rightIdx < v.size() and v[rightIdx] > v[maxIdx]) {
+			maxIdx = rightIdx;
 		}
 
-		// base case : if minIdx is equal to i that means heap property is not violated at the ith index so we can stop making recursive calls
+		// base case : if maxIdx is equal to i that means heap property is not violated at the ith index so we can stop making recursive calls
 
-		if (minIdx != i) {
-			swap(v[i], v[minIdx]);
-			heapify(minIdx);
+		if (maxIdx != i) {
+			swap(v[i], v[maxIdx]);
+			heapify(maxIdx);
 		}
 
 	}
@@ -49,7 +49,7 @@ public:
 		int childIdx = v.size() - 1;
 		int parentIdx = childIdx % 2 == 1 ? childIdx / 2 : childIdx / 2 - 1;
 
-		while (childIdx != 0 and v[childIdx] < v[parentIdx]) {
+		while (childIdx != 0 and v[childIdx] > v[parentIdx]) {
 			swap(v[childIdx], v[parentIdx]);
 			childIdx = parentIdx;
 			parentIdx = childIdx % 2 == 1 ? childIdx / 2 : childIdx / 2 - 1;
@@ -88,7 +88,7 @@ public:
 
 int main() {
 
-	minHeap m;
+	maxHeap m;
 
 	m.push(9);
 	m.push(7);

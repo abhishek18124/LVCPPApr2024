@@ -1,5 +1,6 @@
 #include<iostream>
 #include<vector>
+#include<climits>
 
 using namespace std;
 
@@ -22,11 +23,13 @@ public :
 class Data {
 public :
     int sum;
-    int minData;
-    int maxData;
+    int minVal;
+    int maxVal;
     bool isBST;
     int maxBSTSum;
 };
+
+// time : O(n)
 
 Data helper(TreeNode* root) {
 
@@ -34,11 +37,34 @@ Data helper(TreeNode* root) {
 
     // base case
 
-    // todo ...
+    if (root == NULL) {
+        d.sum = 0;
+        d.minVal = INT_MAX;
+        d.maxVal = INT_MIN;
+        d.isBST = true;
+        d.maxBSTSum = 0;
+        return d;
+    }
 
     // recursive case
 
-    // todo ...
+    Data left = helper(root->left);
+    Data right = helper(root->right);
+
+    d.sum = left.sum + right.sum + root->val;
+    d.minVal = min(left.minVal, min(right.minVal, root->val));
+    d.maxVal = max(left.maxVal, max(right.maxVal, root->val));
+    d.isBST = left.isBST and right.isBST and (root->val > left.maxVal and root->val < right.minVal);
+
+    if (d.isBST) {
+        d.maxBSTSum = max(left.maxBSTSum, max(right.maxBSTSum, d.sum));
+    } else {
+        d.maxBSTSum = max(left.maxBSTSum, right.maxBSTSum);
+    }
+
+    return d;
+
+
 }
 
 
