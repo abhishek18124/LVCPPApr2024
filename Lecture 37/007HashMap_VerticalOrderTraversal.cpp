@@ -2,7 +2,7 @@
 
 	given the pre-order traversal of a binary tree, output its vertical order traversal.
 
-	Example 
+	Example
 		Input : 10 20 40 -1 -1 50 70 -1 -1 -1 30 -1 60 -1 -1
 		Output: 40
 		        20 70
@@ -33,7 +33,7 @@ node* buildTree() {
 	int x;
 	cin >> x;
 
-	if(x == -1) {
+	if (x == -1) {
 		node* root = NULL;
 		// root represents an empty tree
 		return root;
@@ -41,20 +41,22 @@ node* buildTree() {
 
 	node* root = new node(x);
 	root->left = buildTree();
-	root->right= buildTree();
+	root->right = buildTree();
 
 	return root;
 }
 
-void verticalOrder(node* root, map<int, vector<int>>& distMap, int d) {
+void dfs(node* root, map<int, vector<int>>& distMap, int d) {
 
-	if(!root) {
+	if (!root) { // root == NULL
 		return;
 	}
 
+	// base case
+
 	distMap[d].push_back(root->data);
-	verticalOrder(root->left, distMap, d-1);
-	verticalOrder(root->right, distMap, d+1);
+	dfs(root->left, distMap, d - 1);
+	dfs(root->right, distMap, d + 1);
 
 }
 
@@ -65,12 +67,12 @@ int main() {
 
 	map<int, vector<int>> distMap;
 
-	verticalOrder(root, distMap, 0);
+	dfs(root, distMap, 0);
 
-	for(pair<int, vector<int>> p : distMap) {
+	for (pair<int, vector<int>> p : distMap) {
 		cout << p.first << " : ";
-		for(int node : p.second) {
-			cout << node << " ";
+		for (int nodeVal : p.second) {
+			cout << nodeVal << " ";
 		}
 		cout << endl;
 	}
