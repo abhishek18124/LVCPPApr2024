@@ -57,7 +57,8 @@ int f(TreeNode* root) {
 
 // top-down implementation
 
-// time : on. avg. n.logn with a map, on avg. n with a unordered_map but n^2 in the worst case
+// time : worst case O(n.logn) with a map;
+//      : on avg. O(n) with a unordered_map but O(n^2) in the worst case
 // space: h (can be n in the worst case if tree is skewed) due to fn call stack + n due to map ~ O(n)
 
 int fTopDown(TreeNode* root, map<TreeNode*, int>& dp) {
