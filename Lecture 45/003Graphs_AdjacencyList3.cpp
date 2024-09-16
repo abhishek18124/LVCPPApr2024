@@ -15,7 +15,7 @@ using namespace std;
 template <typename T>
 class graph {
 
-	map<T, list<T>> neighbourMap; // to store the graph representation
+	map<T, list<pair<T, int>>> neighbourMap; // to store the graph representation
 	bool isDirected; // to indicate if the graph is directed or not
 
 public :
@@ -28,14 +28,29 @@ public :
 
 		// adds an edge b/w vertex u and v
 
-		// todo...
+		neighbourMap[u].push_back({v, w});
+		if (!isDirected) {
+			neighbourMap[v].push_back({u, w});
+		}
+
 	}
 
 	void print() {
 
 		// prints the adjacency list representation of the weighted-graph
 
-		// todo...
+		for (pair<T, list<pair<T, int>>> p : neighbourMap) {
+			T vertexLabel = p.first;
+			list<pair<T, int>> ngblist = p.second;
+			cout << vertexLabel << " : ";
+			for (pair<T, int> ngb : ngblist) {
+				T ngbLabel = ngb.first;
+				int edgeWgt = ngb.second;
+				cout << "(" << ngbLabel << ", " << edgeWgt << ") ";
+			}
+			cout << endl;
+		}
+
 	}
 };
 

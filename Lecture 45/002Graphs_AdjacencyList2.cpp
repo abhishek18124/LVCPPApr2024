@@ -7,7 +7,7 @@ Note : each vertex in the graph is generic.
 */
 
 #include<iostream>
-#include<map>
+#include<unordered_map>
 #include<list>
 
 using namespace std;
@@ -15,7 +15,7 @@ using namespace std;
 template <typename T>
 class graph {
 
-	map<T, list<T>> neighbourMap; // to store the graph representation
+	unordered_map<T, list<T>> neighbourMap; // to store the graph representation
 	bool isDirected; // to indicate if the graph is directed or not
 
 public :
@@ -27,8 +27,11 @@ public :
 	void addEdge(T u, T v) {
 
 		// adds an edge b/w vertex u and v
+		neighbourMap[u].push_back(v);
+		if (!isDirected) {
+			neighbourMap[v].push_back(u);
+		}
 
-		// todo...
 
 	}
 
@@ -36,21 +39,29 @@ public :
 
 		// prints the adjacency list representation of the graph
 
-		// todo...
+		for (pair<T, list<T>> p :  neighbourMap) {
+			T vertexLabel = p.first;
+			list<T> ngblist = p.second;
+			cout << vertexLabel << " : ";
+			for (T ngb : ngblist) {
+				cout << ngb << " ";
+			}
+			cout << endl;
+		}
 
 	}
 };
 
 int main() {
 
-	graph<int> g;
+	graph<char> g;
 
-	g.addEdge(0, 1);
-	g.addEdge(0, 2);
-	g.addEdge(1, 3);
-	g.addEdge(2, 3);
-	g.addEdge(2, 4);
-	g.addEdge(3, 4);
+	g.addEdge('A', 'B');
+	g.addEdge('A', 'C');
+	g.addEdge('B', 'D');
+	g.addEdge('C', 'D');
+	g.addEdge('C', 'E');
+	g.addEdge('D', 'E');
 
 	g.print();
 
