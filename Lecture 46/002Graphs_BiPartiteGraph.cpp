@@ -7,6 +7,7 @@ Given an undirected graph, check if it is bipartite or not.
 #include<iostream>
 #include<unordered_map>
 #include<list>
+#include<queue>
 
 using namespace std;
 
@@ -40,7 +41,20 @@ public :
 
 			// explore 'front'
 
-			// todo ...
+			list<T> ngblist = neighbourMap[front];
+			for (T ngb : ngblist) {
+				if (colorMap.find(ngb) == colorMap.end()) {
+					// ngb is not yet colored / visited
+					colorMap[ngb] = 1 - colorMap[front];
+					q.push(ngb);
+				} else {
+					// ngb is already colored
+					if (colorMap[front] == colorMap[ngb]) {
+						// component is not bipartite
+						return false;
+					}
+				}
+			}
 
 		}
 
@@ -52,8 +66,8 @@ public :
 		bool flag = true; // assume graph is a biparite
 		unordered_map<T, int> colorMap; // to store the mapping between
 		// the vertices and their color
-		for (pair<T, list<T>> vertex : neighbourMap) {
-			T vertexLabel = vertex.first;
+		for (pair<T, list<T>> p : neighbourMap) {
+			T vertexLabel = p.first;
 			if (colorMap.find(vertexLabel) == colorMap.end()) {
 				// 'vertexLabel' not colored, hence not visited
 				if (bfsHelper(vertexLabel, colorMap) == false) {
@@ -77,7 +91,7 @@ int main() {
 	g.addEdge('A', 'C');
 	g.addEdge('B', 'D');
 	g.addEdge('C', 'E');
-	g.addEdge('D', 'E');
+	// g.addEdge('D', 'E');
 
 	g.isBiPartite() ? cout << "bipartite!" << endl : cout << "not bipartite!" << endl;
 
