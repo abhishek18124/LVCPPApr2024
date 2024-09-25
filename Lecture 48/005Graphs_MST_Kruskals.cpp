@@ -2,6 +2,7 @@
 #include<unordered_map>
 #include<set>
 #include<vector>
+#include<algorithm>
 
 using namespace std;
 
@@ -58,6 +59,7 @@ public :
 	}
 };
 
+// return true if you want e1 to be ordered before e2 otherwise return false
 template <typename T>
 bool edgeComparator(edge<T> e1, edge<T> e2) {
 	return e1.w < e2.w;
@@ -78,6 +80,8 @@ public :
 		vertexSet.insert(v);
 	}
 
+	// time : O(ElogE) due to sort()
+
 	vector<edge<T>> kruskal() {
 		disjointSet<T> ds;
 
@@ -87,16 +91,25 @@ public :
 		}
 
 		// 2. sort list of edges
-		sort(edgeList.begin(), edgeList.end(), edgeComparator<T>);
+		sort(edgeList.begin(), edgeList.end(), edgeComparator<T>); // ElogE
 
 		// 3. construct MST
 		vector<edge<T>> mst;
-		for (edge<T> e : edgeList) {
+		int mstSum = 0;
+		for (edge<T> e : edgeList) { // on avg. E.c
+			// check if 'e' is safe
 			if (ds.findSet(e.u) != ds.findSet(e.v)) {
+				// 'e' is safe
 				ds.unionSet(e.u, e.v);
 				mst.push_back(e);
+				mstSum += e.w;
+				if (mst.size() == vertexSet.size() - 1) {
+					break;
+				}
 			}
 		}
+
+		cout << mstSum << endl;
 
 		return mst;
 	}

@@ -99,7 +99,7 @@ int main() {
 
 	g.addEdge('A', 'B');
 	g.addEdge('A', 'C');
-	g.addEdge('B', 'C');
+	// g.addEdge('B', 'C');
 
 	g.isCyclePresent() ? cout << "cycle found!" << endl :
 	                          cout << "cycle not found!" << endl;
